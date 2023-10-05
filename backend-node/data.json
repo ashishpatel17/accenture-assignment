@@ -1,0 +1,141 @@
+{
+    "dashoardData":{
+        "dashboardStatistics":{
+            "totalRevenue":9170,
+            "peopleVisited":32000,
+            "averageSalesPerDay":1400,
+            "unitSoldPerDay":9871
+        },
+        "totalRevenue":{
+            "march":300,
+            "april":450,
+            "may":1100,
+            "june":980,
+            "july":879,
+            "august":987,
+            "september":435,
+            "october":567,
+            "november":342,
+            "december":879,
+            "january":432,
+            "february":879
+        },
+        "topSalesItem":[
+            {
+            "item":"AMUL GOLD",
+            "apsd":2132,
+            "upsd":872,
+            "skuStock":90
+        },{
+            "item":"Gulab Jamun",
+            "apsd":1892,
+            "upsd":8782,
+            "skuStock":53
+        },{
+            "item":"penut butter",
+            "apsd":7283,
+            "upsd":3221,
+            "skuStock":76
+        },{
+            "item":"Ashirvad Atta",
+            "apsd":9729,
+            "upsd":2321,
+            "skuStock":153
+        },{
+            "item":"Almonds",
+            "apsd":1892,
+            "upsd":8782,
+            "skuStock":53
+        },{
+            "item":"Dairy milk",
+            "apsd":5421,
+            "upsd":121,
+            "skuStock":83
+        },{
+            "item":"Nescafe",
+            "apsd":8992,
+            "upsd":8763,
+            "skuStock":43
+        },{
+            "item":"Groundnut Oil",
+            "apsd":3432,
+            "upsd":2322,
+            "skuStock":73
+        },{
+            "item":"Parle G",
+            "apsd":2345,
+            "upsd":4321,
+            "skuStock":73
+        },{
+            "item":"sunfeast",
+            "apsd":432,
+            "upsd":324,
+            "skuStock":33
+        }
+    ],
+    "salesByCategory":[
+        {
+            "category":"grocery",
+            "sales":65
+        },
+        {
+            "category":"stationary",
+            "sales":76
+        },
+        {
+            "category":"dairy",
+            "sales":34
+        },
+        {
+            "category":"clothing",
+            "sales":27
+        },
+        {
+            "category":"home decor",
+            "sales":33
+        }
+    ],
+    "productStocks":[
+        {
+            "item":"Biscuits",
+            "stock":true
+        },
+        {
+            "item":"T-shirts",
+            "stock":true
+        },
+        {
+            "item":"Pulses",
+            "stock":false
+        },
+        {
+            "item":"Talcum powder",
+            "stock":true
+        },
+        {
+            "item":"Bulbs",
+            "stock":false
+        },
+        {
+            "item":"Kitkat",
+            "stock":false
+        },
+        {
+            "item":"Flip FLops",
+            "stock":true
+        },
+        {
+            "item":"Socks",
+            "stock":true
+        }
+    ],
+    "storeRevenue":{
+        "sagasan R-mart":98,
+        "Kudasan osia":23,
+        "gift city bazar":76,
+        "thaltej":123,
+        "iscon":34,
+        "koba":87
+    }
+    }
+}
