@@ -34,7 +34,7 @@ class DashboardController {
             }
             catch (err) {
                 console.log(err);
-                res.status(500).json({ Error: err, message: "Internal Server Error!" });
+                res.status(500).json({ errMessage: err, message: "Internal Server Error!" });
             }
         });
     }
