@@ -8,7 +8,7 @@ export default class Server {
   constructor(app: Application) {
     this.config(app);
     new Routes(app);
-    new database();
+    // new database();
   }
 
   private config(app: Application): void {
