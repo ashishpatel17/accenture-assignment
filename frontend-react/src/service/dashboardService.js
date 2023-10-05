@@ -9,7 +9,7 @@ class dashboardService {
     utils;
     dispatch = useDispatch();
     constructor() {
-        this.baseUrl = "http://localhost:8080/api/dashboard/";
+        this.baseUrl = "/api/dashboard/";
     }
 
     async getDashboardStats() {
