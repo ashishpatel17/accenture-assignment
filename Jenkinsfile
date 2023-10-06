@@ -9,21 +9,9 @@ pipeline {
     }
 
     stage('move to front-end folder and perform steps') {
-      parallel {
-        stage('move to front-end folder and perform steps') {
-          steps {
-            sh '''cd frontend-react
-ls'''
-          }
-        }
-
-        stage('move to backend folder and perform steps') {
-          steps {
-            sh '''cd backend-node
-ls'''
-          }
-        }
-
+      steps {
+        sh '''cd frontend-react
+npm install --force'''
       }
     }
 
