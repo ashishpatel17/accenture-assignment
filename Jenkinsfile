@@ -13,26 +13,17 @@ pipeline {
         stage('move to front-end folder and perform steps') {
           steps {
             sh '''cd frontend-react
-npm install --force
-npm run build'''
+ls'''
           }
         }
 
         stage('move to backend folder and perform steps') {
           steps {
             sh '''cd backend-node
-npm install --force
-npm run build'''
+ls'''
           }
         }
 
-      }
-    }
-
-    stage('restart nginx') {
-      steps {
-        sh '''cd ~
-systemctl restart nginx'''
       }
     }
 
