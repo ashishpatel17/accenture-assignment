@@ -1,6 +1,6 @@
 pipeline {
   agent any
-  tools {nodejs "node"}
+  tools {nodejs "18.18.0"}
   stages {
     stage('pull latest code from main branch') {
       steps {
