@@ -1,41 +1,36 @@
 import { Sequelize, DataTypes } from "sequelize";
+import store from "./model/store.model";
+import storerevenue from "./model/storerevenue.model";
+
 
 class database {
+  
   constructor() {
-    this.connectDB();
+    
   }
 
-  connectDB() {
-    const sequelize = new Sequelize("wearvibe", "root", "root", {
-      host: "localhost",
-      dialect: "mysql",
-    });
+  async connectDB() {
+    try {
 
-    sequelize
-      .authenticate()
-      .then(() => {
-        console.log("Connection has been established successfully.");
-      })
-      .catch((error) => {
-        console.error("Unable to connect to the database: ", error);
+      const sequelize = new Sequelize("analytics", "root", "root", {
+        host: "localhost",
+        dialect: "mysql",
       });
 
-    // Define a model
-    const brand = sequelize.define("brand", {
-      // Model attributes go here
-      brand_id: {
-        type: DataTypes.STRING,
-        allowNull: false, // Makes the field required
-        unique: true, // Ensures  unique
-      },
-      name: {
-        type: DataTypes.STRING
-      },
-      description: {
-        type: DataTypes.STRING
-      },
-      // ... other fields ...
-    });
+      await sequelize.authenticate();
+      console.log("Connection has been established successfully.");
+   
+      
+      store(sequelize);
+      storerevenue(sequelize);
+
+      
+      return sequelize;
+      
+    } catch (error) {
+      console.error("Unable to connect to the database: ", error);
+      throw error;
+    }
   }
 }
 export default database;

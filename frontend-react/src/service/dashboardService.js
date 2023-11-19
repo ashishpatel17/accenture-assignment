@@ -1,4 +1,4 @@
-import { setDashboardStats, setTotalRevenue, setTopSales, setProductStock, setCategorySales , setStoreRevenue } from '../store/reducer';
+import { setDashboardStats, setTotalRevenue, setTopSales, setProductStock, setCategorySales , setStoreRevenue , setStore } from '../store/reducer';
 import {  useDispatch } from 'react-redux';
 import axios from 'axios';
 
@@ -9,7 +9,7 @@ class dashboardService {
     utils;
     dispatch = useDispatch();
     constructor() {
-        this.baseUrl = "/api/dashboard/";
+        this.baseUrl = "http://localhost:8080/api/dashboard/";
     }
 
     async getDashboardStats() {
@@ -25,9 +25,9 @@ class dashboardService {
         }
     }
 
-    async getTotalRevenue() {
+    async getTotalRevenue(store,year) {
         try {
-            const response = await axios.get(this.baseUrl + "stats/revenue");
+            const response = await axios.get(this.baseUrl + "getStoreRevenue/"+store+"/"+year);
             if (response.status === 200 || response.status === 201) {
                 this.dispatch(setTotalRevenue({ totalRevenue: response.data.data }));
             } else {
@@ -87,6 +87,19 @@ class dashboardService {
             }
         } catch (e) {
             this.dispatch(setStoreRevenue({ storeRevenue: { error: "unable to fetch data" } }));
+        }
+    }
+
+    async getStores() {
+        try{
+            const response = await axios.get(this.baseUrl + "getStores");
+            if (response.status === 200 || response.status === 201) {
+                this.dispatch(setStore({ stores: response.data.data }));
+            } else {
+                this.dispatch(setStore({ stores: { error: "unable to fetch data" } }));
+            }
+        } catch (e) {
+            this.dispatch(setStore({ stores: { error: "unable to fetch data" } }));
         }
     }
 

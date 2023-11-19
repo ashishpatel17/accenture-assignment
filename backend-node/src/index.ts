@@ -6,9 +6,16 @@ import database from "./db/database";
 export default class Server {
   
   constructor(app: Application) {
-    this.config(app);
-    new Routes(app);
-    // new database();
+    (async ()=>{
+      this.config(app);
+      await this.setServer(app);
+    })();
+  }
+
+  private async setServer(app:any){
+    let db = new database();
+    let dbSequalize = await db.connectDB();
+    new Routes(app,dbSequalize);
   }
 
   private config(app: Application): void {

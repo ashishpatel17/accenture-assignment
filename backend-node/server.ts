@@ -4,7 +4,7 @@ import Server from "./src/index";
 const app: Application = express();
 new Server(app);
 
-const PORT: number = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+const PORT: number = process.env.PORT ? parseInt(process.env.PORT, 10) : 8080;
 
 app
   .listen(PORT, "localhost", function () {

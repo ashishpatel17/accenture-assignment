@@ -4,6 +4,7 @@ const Header = ({sideBarToggleHandler}) => {
 
   const [menu,setMenu] = useState("close");
 
+
   const toggleSidebar = () => {
     setMenu(menu==="close"?"open":"close");
   }
@@ -13,12 +14,12 @@ const Header = ({sideBarToggleHandler}) => {
   },[menu])
 
   return (
-    <header className="header border-bottom fixed top-0 w-full">
+    <header className="fixed top-0 w-full header border-bottom">
       <div className="flex items-center h-12">
         <div className="w-1/2">
           <button onClick={toggleSidebar}>
             <svg
-              className="w-3 h-3 ml-4 mr-4 fill-current md:hidden lg:hidden block"
+              className="block w-3 h-3 ml-4 mr-4 fill-current md:hidden lg:hidden"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -26,7 +27,7 @@ const Header = ({sideBarToggleHandler}) => {
               <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
             </svg>
           </button>
-          <span className="text-l md:ml-5 lg:ml-5 ml-2">LOOP</span>
+          <span className="ml-2 text-l md:ml-5 lg:ml-5">LOOP</span>
         </div>
         <div className="w-1/2">
           <div className="flex justify-end">

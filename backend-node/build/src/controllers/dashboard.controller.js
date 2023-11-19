@@ -13,28 +13,77 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
+const sequelize_1 = require("sequelize");
 class DashboardController {
-    getDashboardData(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
+    constructor(dbSequalize) {
+        this.getStoreList = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                let dataKey = {
-                    "dashboardStats": "dashboardStatistics",
-                    "revenue": "totalRevenue",
-                    "topSales": "topSalesItem",
-                    "categorySales": "salesByCategory",
-                    "storeRevenue": "storeRevenue",
-                    "productStocks": "productStocks"
-                };
-                let fileData;
-                let objKey = dataKey[req.params.id];
-                fileData = JSON.parse(fs_1.default.readFileSync("./data.json", { encoding: 'utf8' }));
+                let stores = yield this.databaseSequalize.models.store.findAll({
+                    attributes: { exclude: ["createdAt", "updatedAt"] },
+                });
                 res.status(201).json({
-                    data: fileData.dashoardData[objKey]
+                    data: stores,
                 });
             }
             catch (err) {
                 console.log(err);
-                res.status(500).json({ errMessage: err, message: "Internal Server Error!" });
+                res
+                    .status(500)
+                    .json({ errMessage: err, message: "Internal Server Error!" });
+            }
+        });
+        this.getTotalRevenue = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                let revenue = yield this.databaseSequalize.models.storerevenue.findAll({
+                    where: {
+                        store_id: req.params.storeId,
+                        year: req.params.year
+                    },
+                    group: ["month"],
+                    attributes: [['store_id', 'storeId'], 'month', [sequelize_1.Sequelize.fn('SUM', sequelize_1.Sequelize.col('amount')), 'totalRevenue']]
+                });
+                let response = {};
+                if (revenue && revenue.length > 0) {
+                    revenue.map((v) => {
+                        response[v.month] = parseInt(v.dataValues.totalRevenue);
+                    });
+                }
+                res.status(201).json({
+                    data: response,
+                });
+            }
+            catch (err) {
+                console.log(err);
+                res
+                    .status(500)
+                    .json({ errMessage: err, message: "Internal Server Error!" });
+            }
+        });
+        this.databaseSequalize = dbSequalize;
+    }
+    getDashboardData(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let dataKey = {
+                    dashboardStats: "dashboardStatistics",
+                    revenue: "totalRevenue",
+                    topSales: "topSalesItem",
+                    categorySales: "salesByCategory",
+                    storeRevenue: "storeRevenue",
+                    productStocks: "productStocks",
+                };
+                let fileData;
+                let objKey = dataKey[req.params.id];
+                fileData = JSON.parse(fs_1.default.readFileSync("./data.json", { encoding: "utf8" }));
+                res.status(201).json({
+                    data: fileData.dashoardData[objKey],
+                });
+            }
+            catch (err) {
+                console.log(err);
+                res
+                    .status(500)
+                    .json({ errMessage: err, message: "Internal Server Error!" });
             }
         });
     }

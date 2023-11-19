@@ -1,3 +1,13 @@
+.dark-theme .select-box select {
+  background-color: #262d47 !important;
+  padding: 2px;
+}
+
+.dark-theme .select-box select option{
+  background-color: #262d47;
+}
+
+
 .light-theme .header{
   background-color: #0c6470;
 }

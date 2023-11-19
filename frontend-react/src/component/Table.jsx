@@ -6,6 +6,9 @@ const Table = ({ tableData }) => {
 
   useEffect(() => {
     if (tableData) {
+      // if(tableData.length>4){
+      //   throw "too many records";
+      // }
       setData(tableData);
       let skuVals = tableData.map((e)=>{ return parseInt(e.skuStock) });
       setMaxSku(Math.max(...skuVals));

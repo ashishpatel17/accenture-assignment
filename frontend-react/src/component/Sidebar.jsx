@@ -3,6 +3,8 @@ import React, { useState } from "react";
 const Sidebar = ({onThemeChange}) => {
   const [theme, setTheme] = useState("dark");
 
+  
+
   const changeTheme = () => {
     let newTheme = (theme==="dark")?"light":"dark" 
     setTheme(newTheme);
@@ -20,7 +22,7 @@ const Sidebar = ({onThemeChange}) => {
       <li className="flex mt-8"> <img className="w-4 h-4 mt-1 ml-5 mr-5 lg:mr-2 sm:mr-2 lg:ml-2 sm:ml-2" src="./settings.png" /> Setting</li>
       <li className="flex mt-8"> <img className="w-4 h-4 mt-1 ml-5 mr-5 lg:mr-2 sm:mr-2 lg:ml-2 sm:ml-2" src="./theme.png" />
         Theme
-        <button className="ml-3 mt-1" onClick={changeTheme}>
+        <button className="mt-1 ml-3" onClick={changeTheme}>
           <img className="w-12" src={`${theme === "dark" ? "./toggle-light.png" : "./toggle-dark.png"}`} />
         </button>
       </li>
